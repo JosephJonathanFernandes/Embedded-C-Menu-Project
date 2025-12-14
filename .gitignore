@@ -1,0 +1,18 @@
+# Build artifacts
+embedded_menu
+embedded_menu.exe
+*.o
+*.obj
+build/
+
+# EEPROM simulation file
+eeprom.bin
+
+# Editor configs
+.vscode/
+*.swp
+*.swo
+
+# OS files
+Thumbs.db
+desktop.ini

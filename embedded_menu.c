@@ -1,7 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#ifdef _WIN32
+#include <windows.h>
+#define sleep(x) Sleep((x) * 1000)
+#else
 #include <unistd.h>  // For sleep()
+#endif
 
 // ------------------ Function Declarations ------------------ //
 void trafficLight();
@@ -26,13 +32,18 @@ void menu() {
 }
 
 // ------------------ Main Program ------------------ //
-int main() {
-    int choice;
+int main(void) {
+    int choice = 0;
+    char line[32];
 
     while (1) {
         menu();
-        scanf("%d", &choice);
-        getchar(); // Clear newline from buffer
+        if (fgets(line, sizeof(line), stdin) == NULL) {
+            printf("Input error, exiting.\n");
+            break;
+        }
+
+        choice = atoi(line);
 
         switch (choice) {
             case 1: trafficLight(); break;
@@ -78,12 +89,17 @@ void trafficLight() {
 }
 
 void passwordLock() {
-    char password[20];
+    char password[32];
     int attempts = 3;
 
     while (attempts--) {
         printf("Enter Password: ");
-        scanf("%s", password);
+        if (fgets(password, sizeof(password), stdin) == NULL) {
+            printf("Input error.\n");
+            return;
+        }
+        password[strcspn(password, "\n")] = '\0';
+
         if (strcmp(password, "1234") == 0) {
             printf("Access Granted\n");
             return;
@@ -115,10 +131,13 @@ void stopwatch() {
 }
 
 void uartSimulation() {
-    char ch;
+    char buf[8];
     printf("Enter a character to send: ");
-    ch = getchar();
-    printf("UART Received: %c\n", ch);
+    if (fgets(buf, sizeof(buf), stdin) == NULL) {
+        printf("Input error.\n");
+        return;
+    }
+    printf("UART Received: %c\n", buf[0]);
 }
 
 void portControl() {

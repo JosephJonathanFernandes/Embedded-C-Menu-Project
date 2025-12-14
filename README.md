@@ -62,4 +62,56 @@ This project is licensed under the MIT License. Feel free to use, modify, and di
 
 ### 👨‍💻 Author
 
-Joseph Jonathan Fernandes
+**Embedded C — Menu-Driven Simulation**
+
+This small project is a console-based simulation of common embedded-system building blocks written in plain C. It's intended for learning and demonstrations without requiring real hardware.
+
+Highlights
+- Portable menu-driven examples showing FSMs, bitwise port control, simple file-backed "EEPROM", UART-style I/O emulation, and more.
+- Small, single-source-file project ideal for students and hobbyists.
+
+Repository status
+- License: MIT
+- CI: Build on push/PR (GitHub Actions)
+
+Features
+- Traffic light (finite-state machine)
+- Password-protected lock (simple auth example)
+- LED pattern generator (bitwise ops)
+- Stopwatch timer
+- UART I/O simulation (stdin/stdout)
+- Bitwise port control examples
+- EEPROM simulation using a binary file
+
+Requirements
+- A C compiler (GCC / clang / MSVC)
+
+Quick Start (Linux / macOS / WSL)
+```bash
+gcc -std=c11 -Wall -Wextra embedded_menu.c -o embedded_menu
+./embedded_menu
+```
+
+Quick Start (Windows using MSYS2 / MinGW)
+```powershell
+gcc -std=c11 -Wall -Wextra embedded_menu.c -o embedded_menu.exe
+.\embedded_menu.exe
+```
+
+Build with Make (Unix-like)
+```bash
+make
+```
+
+Notes
+- The program is intentionally simple for teaching; inputs use standard console I/O.
+- The code includes a small portability layer so it builds on Windows and POSIX systems.
+
+Contributing
+- See `CONTRIBUTING.md` for contribution guidelines.
+
+License
+- This project is released under the MIT License. See `LICENSE`.
+
+Author
+- Joseph Jonathan Fernandes
